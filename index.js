@@ -1,0 +1,33 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const port = 3000;
+const cors = require('cors');
+const authenticationRouter = require('./routes/authentication');
+const todoRouter = require('./routes/todo');
+
+
+const app = express();
+app.use(cors({
+  origin: "*",
+  credentials: true,
+}));//backend allows request from everywhere (not for production ready backend, just for testing)
+app.use(bodyParser.json());
+
+app.use('/authentication', authenticationRouter);
+app.use('/todos', todoRouter);
+
+mongoose.connect('mongodb://mongo:Ax8RgdApvRjU1bS0ZyaQ@containers-us-west-166.railway.app:7823/');
+
+app.get('/', (req, res) => {
+  res.send('Hello, this is the default route!');
+}); 
+
+app.listen(port,(err)=>{
+  if(err){ console.log(err)}
+  console.log(`App listening on port ${port}`);
+})
+
+//All route handlers
+
+module.exports = app;
