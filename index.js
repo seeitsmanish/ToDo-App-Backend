@@ -17,8 +17,7 @@ app.use(bodyParser.json());
 app.use('/authentication', authenticationRouter);
 app.use('/todos', todoRouter);
 
-mongoose.connect('mongodb://mongo:Ax8RgdApvRjU1bS0ZyaQ@containers-us-west-166.railway.app:7823/');
-
+mongoose.connect('mongodb+srv://seeitsmanish:manish2002@cluster0.2z61mas.mongodb.net/');
 app.get('/', (req, res) => {
   res.send('Hello, this is the default route!');
 }); 
